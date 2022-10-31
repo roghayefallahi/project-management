@@ -1,3 +1,5 @@
+const { AllRoutes } = require("../routes/router");
+
 //const express = require("express");
 module.exports = class Application {
   //#app= require("express")();
@@ -23,6 +25,7 @@ module.exports = class Application {
       return console.log("Connect to Database successful..");
     });
   }
+
   createServer(PORT) {
     const http = require("http");
     const server = http.createServer(this.#app);
@@ -55,5 +58,12 @@ module.exports = class Application {
         message: "this is a new express application",
       });
     });
+    this.#app.use(AllRoutes)
+    // this.#app.use((err,req, res, next) => {
+    //   try {
+    //   } catch (error) {
+    //     next(error)
+    //   }
+    // })
   }
 }
