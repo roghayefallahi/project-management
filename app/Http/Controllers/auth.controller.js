@@ -36,7 +36,7 @@ class AuthController {
         };
         const token = tokenGenarator({username});
         user.token = token;
-        user.save()
+       await user.save()
 
       return res.status(200).json({
         status: 200,
