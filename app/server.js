@@ -33,6 +33,7 @@ module.exports = class Application {
       console.log(`Server Run > on http://localhost:${PORT}`);
     });
   }
+
   errorHandler() {
     this.#app.use((req, res, next) => {
       return res.status(404).json({
@@ -58,7 +59,7 @@ module.exports = class Application {
         message: "this is a new express application",
       });
     });
-    this.#app.use(AllRoutes)
+    this.#app.use(AllRoutes);
     // this.#app.use((err,req, res, next) => {
     //   try {
     //   } catch (error) {
@@ -66,4 +67,4 @@ module.exports = class Application {
     //   }
     // })
   }
-}
+};

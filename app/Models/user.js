@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema(
     password: { type: String,  required:true},
     roles: { type: [String], default: ["USER"] },
     teams: { type: [mongoose.Types.ObjectId] , default:[]},
+    token: {type: String, default: ""}
   },
   {
     timestamps: true,
