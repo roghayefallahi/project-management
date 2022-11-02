@@ -1,5 +1,5 @@
 const { UserModel } = require("../../Models/user");
-const { hashString } = require("../../Modules/functions");
+const { hashString, tokenGenarator } = require("../../Modules/functions");
 const bcrypt = require("bcrypt");
 class AuthController {
   async register(req, res, next) {
@@ -34,13 +34,16 @@ class AuthController {
           status: 401,
           message: "نام کاربری یا رمز عبور اشتباه می باشد!",
         };
+        const token = tokenGenarator({username});
+        user.token = token;
+       await user.save()
 
       return res.status(200).json({
         status: 200,
         success: true,
         message: "شما با موفقیت وارد حساب کابری خود شدید...",
-        token: "",
-      });
+        token
+      })
     } catch (error) {
       next(error);
     }
